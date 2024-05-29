@@ -119,7 +119,8 @@ resource-group-system          resource-group-controller-manager-659f6b9d4b-xv97
 
 <details>
   <summary>Example output</summary>
-  
+
+edit porch images 
 ```sh
 root@e2e-88-228:~# kubectl get pods -n porch-system
 NAME                                 READY   STATUS    RESTARTS        AGE
@@ -127,5 +128,16 @@ function-runner-67d4c7c7b-jlpkx      1/1     Running   0               28m
 function-runner-67d4c7c7b-sc6cf      1/1     Running   0               28m
 porch-controllers-76d67fd966-t574s   1/1     Running   1 (2m36s ago)   28m
 porch-server-6f7c4c5684-l6rmv        1/1     Running   1 (21s ago)     28m
+```
+</details>
+
+edit nephio controller image
+<details>
+  <summary>Example output</summary>
+  
+```sh
+NAME                                 READY   STATUS    RESTARTS      AGE
+nephio-controller-5c7cc9c998-g8q2v   1/2     Running   1 (15s ago)   30m
+token-controller-84d8c469b8-bkb6h    2/2     Running   0             30m
 ```
 </details>
