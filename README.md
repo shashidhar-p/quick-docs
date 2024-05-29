@@ -9,8 +9,78 @@
   ```
 
 ## 2. Install AMCOP
+- ```bash 
+  cd kpt-automation
+  ```
+- ```bash 
+  vi defaults.env
+  ```
 
-fixme missing steps
+  - Update the docker image tag in the file
+    - ``` export AMCOPTAG=${AMCOPTAG:-"v4.1-2024-05-27"} ```
+  - Change the K8s installation flag to true
+    - ``` export INSTALL_K8s="true" ```
+  - Save and close the file
+
+- Execute the “install.sh” script as a sudo user
+- ```bash
+    sudo bash -x install.sh
+  ```
+- After the installation you will receive a message like below
+  <details>
+  <summary>Expand</summary>
+  
+  ```sh
+  PLAY RECAP *********************************************************************
+  127.0.0.1                  : ok=356  changed=95   unreachable=0    failed=0    skipped=22   rescued=0    ignored=0   
+  
+  Playbook run took 0 days, 0 hours, 19 minutes, 29 seconds
+  Wednesday 29 May 2024  11:44:49 +0530 (0:00:00.056)       0:19:29.018 ********* 
+  =============================================================================== 
+  kpt : Apply package: distros/sandbox/metallb -------------------------- 284.26s
+  install_k8s : Initialize Kubernetes cluster --------------------------- 120.25s
+  kpt : Apply package: amcop-packages/porch ------------------------------ 95.77s
+  kpt : Apply package: amcop-packages/nephio-operator -------------------- 84.99s
+  install_k8s : Run get-docker.sh script --------------------------------- 71.84s
+  install_amcop : Wait for stock repositories ---------------------------- 52.96s
+  kpt : Apply package: amcop-packages/removal-controller ----------------- 32.43s
+  install_k8s : Install kubelet, kubeadm, kubectl ------------------------ 30.30s
+  install : Wait for deployments in namespace config-management-monitoring -- 26.13s
+  kpt : Apply package: nephio/core/configsync ---------------------------- 16.63s
+  Wait for packages to be applied ---------------------------------------- 12.76s
+  kpt : Get package differences between local and upstream: repository ---- 8.81s
+  kpt : Get package differences between local and upstream: repository ---- 8.27s
+  install_amcop : Deploy Amcop -------------------------------------------- 7.71s
+  install_k8s : Update apt cache ------------------------------------------ 7.70s
+  kpt : Get package differences between local and upstream: rootsyncAmcop --- 7.68s
+  kpt : Get package differences between local and upstream: repository ---- 7.59s
+  kpt : Get package differences between local and upstream: repository ---- 7.49s
+  kpt : Get package differences between local and upstream: repository ---- 7.45s
+  install : Wait for stock repositories ----------------------------------- 6.94s
+  Wednesday 29 May 2024  11:44:49 +0530 (0:00:00.059)       0:19:29.019 ********* 
+  =============================================================================== 
+  kpt ------------------------------------------------------------------- 725.51s
+  install_k8s ----------------------------------------------------------- 252.37s
+  install ---------------------------------------------------------------- 72.28s
+  install_amcop ---------------------------------------------------------- 70.74s
+  ansible.builtin.async_status ------------------------------------------- 12.76s
+  andrewrothstein.kubectl ------------------------------------------------- 7.08s
+  andrewrothstein.kpt ----------------------------------------------------- 6.68s
+  ansible.builtin.pip ----------------------------------------------------- 5.87s
+  ansible.builtin.k8s ----------------------------------------------------- 5.02s
+  ansible.builtin.unarchive ----------------------------------------------- 3.80s
+  gather_facts ------------------------------------------------------------ 2.18s
+  andrewrothstein.unarchive-deps ------------------------------------------ 1.94s
+  andrewrothstein.git ----------------------------------------------------- 1.81s
+  ansible.builtin.include_role -------------------------------------------- 0.51s
+  ansible.builtin.stat ---------------------------------------------------- 0.43s
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+  total ---------------------------------------------------------------- 1168.99s
+  + echo 'Done installing Nephio Sandbox Environment'
+  Done installing Nephio Sandbox Environment
+  
+  ```
+  </details>
 
 Wait until all the pods come up, it will take around 10-20 minutes
 <details>
