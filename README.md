@@ -187,6 +187,19 @@
   ```
   </details>
 
+- Replace the images for Porch and Nephio with the community image
+  ```sh
+  kubectl get pods -n porch-system
+  ```
+
+  ```
+  NAME                                 READY   STATUS    RESTARTS      AGE
+  function-runner-67d4c7c7b-6zkwn      1/1     Running   0             16h
+  function-runner-67d4c7c7b-gndk2      1/1     Running   0             16h
+  porch-controllers-76d67fd966-v6c59   1/1     Running   1 (16h ago)   16h
+  porch-server-6f7c4c5684-lnc7c        1/1     Running   1 (16h ago)   16h
+  ```
+
 <details>
   <summary>Example output</summary>
 
